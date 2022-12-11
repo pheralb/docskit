@@ -9,6 +9,7 @@ yarn.lock
 .env
 .vercel
 .output
+api
 
 # Other =>
 /build/
