@@ -9,6 +9,8 @@ import { supabaseEnv } from "@/utils/supabase.env";
 import { createServerClient } from "@/utils/supabase.server";
 import type { Database } from "@/types/db";
 
+import Header from "@/layout/header";
+
 export const loader = async ({ request }: LoaderArgs) => {
   const response = new Response();
   const supabase = createServerClient({ request, response });
@@ -59,8 +61,7 @@ export default function Supabase() {
 
   return (
     <>
-      {/* <Login supabase={supabase} session={session} />
-      <Nav /> */}
+      <Header supabase={supabase} session={session} />
       <Outlet context={{ supabase, session }} />
     </>
   );
