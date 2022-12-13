@@ -11,6 +11,9 @@ yarn.lock
 .output
 api
 
+# Tailwind CSS Compiled File =>
+src/styles/tailwind.css
+
 # Other =>
 /build/
 /public/build
