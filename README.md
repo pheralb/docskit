@@ -1,11 +1,40 @@
+<div align="center">
+
+<!-- <a href="docskit.vercel.app">
+<img src="./public/img/banner_gh.jpg" />
+</a> -->
+
+<p></p>
+
+<a href="#-introduction">Introduction</a>
+<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+<a href="#-packages">Packages</a>
+<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+<a href="#-development">Development</a>
+<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+<a href="#-deployment">Deployment</a>
+
+![GitHub stars](https://img.shields.io/github/stars/pheralb/docskit)
+![GitHub issues](https://img.shields.io/github/issues/pheralb/docskit)
+![GitHub license](https://img.shields.io/github/license/pheralb/docskit)
+
+</div>
+
 ## 👋 Introduction
 
 **[docskit](https://docskit.vercel.app/)** is a web app to create simple & beautiful docs using Markdown in your browser.
 
 ## 🌳 Supabase Launch Week 6 Hackathon
 
-- **[Supabase Auth](https://supabase.com/docs/guides/auth/overview)** - auth via GitHub.
-- **[Supabase Database](https://supabase.com/docs/guides/database)** - your docs are saved using an incredible Postgres database.
+**A brief description of how used Supabase**:
+
+- [x] **[Supabase Auth](https://supabase.com/docs/guides/auth/overview)** - auth via GitHub.
+- [x] **[Supabase Database](https://supabase.com/docs/guides/database)** - your docs are saved using an incredible Postgres database.
+- [ ] **[Supabase Edge Functions](https://supabase.com/docs/guides/functions) using [Deno](https://deno.land/)** - Generate a og image for your document.
+
+**Team members**:
+
+- Pablo Hdez - [Twitter](https://twitter.com/pheralb_).
 
 ## 📦 Packages
 
