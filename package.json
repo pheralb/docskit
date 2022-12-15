@@ -22,16 +22,20 @@
     "@uiball/loaders": "1.2.6",
     "@vercel/node": "2.8.0",
     "framer-motion": "7.8.0",
+    "nprogress": "0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "4.7.1",
-    "react-rough-notation": "1.0.3"
+    "react-markdown": "8.0.4",
+    "react-rough-notation": "1.0.3",
+    "remark-gfm": "3.0.1"
   },
   "devDependencies": {
     "@remix-run/dev": "1.8.2",
     "@remix-run/eslint-config": "1.8.2",
     "@remix-run/serve": "1.8.2",
     "@tailwindcss/typography": "0.5.8",
+    "@types/nprogress": "0.2.0",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
     "autoprefixer": "10.4.13",
