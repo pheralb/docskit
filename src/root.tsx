@@ -2,20 +2,27 @@ import {
   Links,
   LiveReload,
   Meta,
-  Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
+  useOutlet,
+  useTransition,
 } from "@remix-run/react";
 import type { MetaFunction, LinksFunction } from "@remix-run/node";
+import { useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import NProgress from "nprogress";
 
 import styles from "./styles/tailwind.css";
 import fonts from "./styles/fonts.css";
+import nProgressStyles from "nprogress/nprogress.css";
 
 // Links =>
 export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: styles },
     { rel: "stylesheet", href: fonts },
+    { rel: "stylesheet", href: nProgressStyles },
     {
       rel: "preload",
       as: "font",
@@ -41,6 +48,19 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function App() {
+  const outlet = useOutlet();
+  const location = useLocation();
+  const transition = useTransition();
+
+  useEffect(() => {
+    // when the state is idle then we can to complete the progress bar
+    if (transition.state === "idle") NProgress.done();
+    // and when it's something else it means it's either submitting a form or
+    // waiting for the loaders of the next location so we start it
+    else NProgress.start();
+  }, [transition.state]);
+
+
   return (
     <html lang="en">
       <head>
@@ -48,7 +68,11 @@ export default function App() {
         <Links />
       </head>
       <body className="text-white bg-midnight text-mini">
-        <Outlet />
+        <AnimatePresence mode="wait">
+          <motion.main key={location.pathname}>
+            {outlet}
+          </motion.main>
+        </AnimatePresence>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

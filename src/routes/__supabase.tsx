@@ -10,6 +10,7 @@ import { createServerClient } from "@/utils/supabase.server";
 import type { Database } from "@/types/db";
 
 import Header from "@/layout/header";
+import Show from "@/components/animations/show";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const response = new Response();
@@ -62,7 +63,9 @@ export default function Supabase() {
   return (
     <>
       <Header supabase={supabase} session={session} />
-      <Outlet context={{ supabase, session }} />
+      <Show>
+        <Outlet context={{ supabase, session }} />
+      </Show>
     </>
   );
 }

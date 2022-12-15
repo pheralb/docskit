@@ -23,16 +23,14 @@ const Header = ({
   };
 
   return (
-    <div className="sticky top-0 w-full pt-3 pl-4 pr-6">
+    <div className="sticky top-0 z-50 w-full py-3 pl-4 pr-6 bg-midnight">
       <div className="flex items-center justify-between">
         <Link to="/">
           <div className="flex items-center space-x-3 text-gray-300 transition-colors duration-150 cursor-pointer hover:text-white">
-            <Logo className="w-8 border rounded-full border-neutral-700" />
+            <Logo className="w-8 border rounded-full border-neutral-800" />
             <p className="font-medium">
               {session ? (
-                <Button onClick={() => supabase.auth.signOut()}>
-                  Sign out
-                </Button>
+                <p>{session.user.user_metadata.name}</p>
               ) : (
                 <p>docskit</p>
               )}
