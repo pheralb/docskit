@@ -1,28 +1,50 @@
-import { useEffect, useState } from "react";
-
 import { json } from "@remix-run/node";
-import type { LoaderArgs } from "@remix-run/node";
 import { Outlet, useFetcher, useLoaderData } from "@remix-run/react";
-
 import { createBrowserClient } from "@supabase/auth-helpers-remix";
-import { supabaseEnv } from "@/utils/supabase.env";
-import { createServerClient } from "@/utils/supabase.server";
-import type { Database } from "@/types/db";
 
-import Header from "@/layout/header";
-import Show from "@/components/animations/show";
+import { useEffect, useState } from "react";
+import { createServerClient } from "@/utils/supabase.server";
+
+import type { SupabaseClient, Session } from "@supabase/auth-helpers-remix";
+import type { Database } from "@/types/db";
+import type { LoaderArgs } from "@remix-run/node";
+
+export type TypedSupabaseClient = SupabaseClient<Database>;
+export type MaybeSession = Session | null;
+
+export type SupabaseContext = {
+  supabase: TypedSupabaseClient;
+  session: MaybeSession;
+};
+
+// this uses Pathless Layout Routes [1] to wrap up all our Supabase logic
+
+// [1] https://remix.run/docs/en/v1/guides/routing#pathless-layout-routes
 
 export const loader = async ({ request }: LoaderArgs) => {
+  // environment variables may be stored somewhere other than
+  // `process.env` in runtimes other than node
+  // we need to pipe these Supabase environment variables to the browser
+  const env = {
+    SUPABASE_URL: process.env.SUPABASE_URL!,
+    SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY!,
+  };
+
+  // We can retrieve the session on the server and hand it to the client.
+  // This is used to make sure the session is available immediately upon rendering
   const response = new Response();
+
   const supabase = createServerClient({ request, response });
 
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
+  // in order for the set-cookie header to be set,
+  // headers must be returned as part of the loader response
   return json(
     {
-      supabaseEnv,
+      env,
       session,
     },
     {
@@ -32,13 +54,13 @@ export const loader = async ({ request }: LoaderArgs) => {
 };
 
 export default function Supabase() {
-  const { supabaseEnv, session } = useLoaderData<typeof loader>();
+  const { env, session } = useLoaderData<typeof loader>();
   const fetcher = useFetcher();
+
+  // it is important to create a single instance of Supabase
+  // to use across client components - outlet context 👇
   const [supabase] = useState(() =>
-    createBrowserClient<Database>(
-      supabaseEnv.SUPABASE_URL,
-      supabaseEnv.SUPABASE_ANON_KEY
-    )
+    createBrowserClient<Database>(env.SUPABASE_URL, env.SUPABASE_ANON_KEY)
   );
 
   const serverAccessToken = session?.access_token;
@@ -48,6 +70,8 @@ export default function Supabase() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.access_token !== serverAccessToken) {
+        // server and client are out of sync.
+        // Remix recalls active loaders after actions complete
         fetcher.submit(null, {
           method: "post",
           action: "/handle-supabase-auth",
@@ -60,12 +84,5 @@ export default function Supabase() {
     };
   }, [serverAccessToken, supabase, fetcher]);
 
-  return (
-    <>
-      <Header supabase={supabase} session={session} />
-      <Show>
-        <Outlet context={{ supabase, session }} />
-      </Show>
-    </>
-  );
+  return <Outlet context={{ supabase, session }} />;
 }
