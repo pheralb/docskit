@@ -8,7 +8,7 @@ module.exports = {
         mono: ["Cascadia", "monospace"],
       },
       colors: {
-        midnight: "#121212",
+        midnight: "#191919",
       }
     },
   },
