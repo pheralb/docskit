@@ -30,7 +30,6 @@
 
 - [x] **[Supabase Auth](https://supabase.com/docs/guides/auth/overview)** - auth via GitHub.
 - [x] **[Supabase Database](https://supabase.com/docs/guides/database)** - your docs are saved using an incredible Postgres database.
-- [ ] **[Supabase Edge Functions](https://supabase.com/docs/guides/functions) using [Deno](https://deno.land/)** - Generate a og image for your document.
 
 **Team members**:
 
@@ -45,6 +44,7 @@
 - **[Supabase Remix Auth Helper](https://supabase.com/docs/guides/auth/auth-helpers/remix)** - user authentication in Remix applications.
 - **[Monaco Editor for React](https://github.com/suren-atoyan/monaco-react)** - use the monaco-editor in any React application.
 - **[React-Markdown](https://github.com/remarkjs/react-markdown)** - Markdown component for React.
+- **[React-Hook-Form](https://react-hook-form.com/)** - performant, flexible and extensible forms with easy-to-use validation.
 - **[Framer Motion](https://www.framer.com/motion/)** - Production-Ready animation library for React.
 - **[React-Icons](https://react-icons.github.io/react-icons/)** - popular icons in your React projects.
 
