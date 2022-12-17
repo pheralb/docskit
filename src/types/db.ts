@@ -12,14 +12,14 @@ export interface Database {
     Tables: {
       docs: {
         Row: {
-          id: number;
-          user_id: string;
-          title: string;
-          description: string;
-          slug: string;
-          doc: string;
-          public: boolean;
-          created: string;
+          id?: number;
+          user_id?: string;
+          title?: string;
+          description?: string;
+          slug?: string;
+          doc?: string;
+          public?: boolean;
+          created?: string;
         };
         Insert: {
           id?: number;
@@ -34,10 +34,10 @@ export interface Database {
         Update: {
           id?: number;
           user_id?: string;
-          title: string;
+          title?: string;
           description?: string;
           slug?: string;
-          doc: string;
+          doc?: string;
           public?: boolean;
           created?: string;
         };
