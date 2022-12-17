@@ -5,17 +5,8 @@ import { createBrowserClient } from "@supabase/auth-helpers-remix";
 import { useEffect, useState } from "react";
 import { createServerClient } from "@/utils/supabase.server";
 
-import type { SupabaseClient, Session } from "@supabase/auth-helpers-remix";
 import type { Database } from "@/types/db";
 import type { LoaderArgs } from "@remix-run/node";
-
-export type TypedSupabaseClient = SupabaseClient<Database>;
-export type MaybeSession = Session | null;
-
-export type SupabaseContext = {
-  supabase: TypedSupabaseClient;
-  session: MaybeSession;
-};
 
 // this uses Pathless Layout Routes [1] to wrap up all our Supabase logic
 
