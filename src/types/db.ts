@@ -12,23 +12,32 @@ export interface Database {
     Tables: {
       docs: {
         Row: {
-          id: string;
+          id: number;
           user_id: string;
+          title: string;
+          description: string;
+          slug: string;
           doc: string;
           public: boolean;
           created: string;
         };
         Insert: {
-          id?: string;
+          id?: number;
           user_id?: string;
-          doc: string;
+          title: string;
+          description?: string;
+          slug: string;
+          doc?: string;
           public?: boolean;
           created?: string;
         };
         Update: {
-          id?: string;
+          id?: number;
           user_id?: string;
-          doc?: string;
+          title: string;
+          description?: string;
+          slug?: string;
+          doc: string;
           public?: boolean;
           created?: string;
         };
