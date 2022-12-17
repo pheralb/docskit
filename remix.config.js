@@ -6,6 +6,7 @@ module.exports = {
   ignoredRouteFiles: ["**/.*"],
   serverDependenciesToBundle: [
     "@uiball/loaders",
+    "nanoid",
     /^rehype.*/,
     /^remark.*/,
     /^unified.*/,
