@@ -1,25 +1,41 @@
+import { TypedSupabaseClient } from "@/types/supabase";
 import Button from "@/ui/button";
-import { BsGear } from "react-icons/bs";
+import { useNavigate } from "@remix-run/react";
+import { BiLogOut } from "react-icons/bi";
 
 interface UserCardProps {
   pic: string;
   name: string;
   children?: React.ReactNode;
+  supabase: TypedSupabaseClient;
 }
 
-const UserCard = (props: UserCardProps) => {
+const UserCard = ({ pic, name, children, supabase }: UserCardProps) => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      navigate("/auth");
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <div className="px-3 py-4 mt-4 mb-1 text-gray-300 rounded-md bg-neutral-800/60">
       <div className="flex items-center mb-3 space-x-3">
-        <img src={props.pic} alt={props.name} className="h-5 rounded-full" />
-        <p className="font-medium">{props.name}</p>
+        <img src={pic} alt={name} className="h-5 rounded-full" />
+        <p className="font-medium">{name}</p>
       </div>
-      {props.children}
+      {children}
       <Button
         className="w-full shadow-none bg-neutral-700/20"
-        icon={<BsGear size={15} />}
+        icon={<BiLogOut size={15} />}
+        onClick={handleLogout}
       >
-        Settings
+        Logout
       </Button>
     </div>
   );

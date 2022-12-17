@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown";
+import rehypePrism from "rehype-prism-plus";
 
 // Plugins =>
 import remarkGfm from "remark-gfm";
@@ -11,7 +12,8 @@ const Viewer = (props: ViewerProps) => {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
-      className="mx-auto prose prose-invert"
+      rehypePlugins={[rehypePrism]}
+      className="prose prose-invert max-w-none"
     >
       {props.children || ""}
     </ReactMarkdown>

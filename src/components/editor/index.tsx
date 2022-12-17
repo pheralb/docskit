@@ -15,7 +15,7 @@ const EditorComponent = (props: EditorProps) => {
       base: "vs-dark",
       inherit: true,
       rules: [],
-      colors: { "editor.background": "#121212" },
+      colors: { "editor.background": "#191919" },
     });
   }
 
