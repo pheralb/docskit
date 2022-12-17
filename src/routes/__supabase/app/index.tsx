@@ -8,6 +8,7 @@ import CreateDoc from "@/components/app/functions/createDoc";
 import { createBrowserClient } from "@supabase/auth-helpers-remix";
 import { Database } from "@/types/db";
 import { supabaseEnv } from "@/utils/supabase.env";
+import Docu from "@/components/app/docu";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const response = new Response();
@@ -35,7 +36,7 @@ export default function App() {
   );
 
   return (
-    <div className="px-5 py-2">
+    <div className="px-5 py-4">
       <h1 className="text-3xl font-medium">Welcome</h1>
       {data?.length === 0 ? (
         <div className="flex flex-col items-center justify-center mt-8">
@@ -48,7 +49,16 @@ export default function App() {
           <CreateDoc supabase={supabase} session={session} />
         </div>
       ) : (
-        data?.map((doc) => <div key={doc.id}>{doc.doc}</div>)
+        <div className="grid grid-cols-1 gap-4 mt-3 sm:grid-cols-2 lg:grid-cols-4">
+          {data?.map((doc) => (
+            <Docu
+              key={doc.id}
+              title={doc.title}
+              description={doc.description}
+              slug={doc.slug}
+            />
+          ))}
+        </div>
       )}
     </div>
   );

@@ -10,9 +10,15 @@ import { Database } from "@/types/db";
 
 import IconButton from "@/ui/iconButton";
 
-import { BiCloud, BiDockLeft, BiLibrary, BiSearch } from "react-icons/bi";
+import {
+  BiDockLeft,
+  BiFolder,
+  BiLibrary,
+  BiPlus,
+  BiSearch,
+} from "react-icons/bi";
 
-import RealtimeDocs from "@/components/app/realtimeDocs";
+import RealtimeDocs from "@/components/app/docs";
 import SidebarSection from "@/components/app/sidebarSection";
 import UserCard from "@/components/app/userCard";
 import CreateDoc from "@/components/app/functions/createDoc";
@@ -52,12 +58,13 @@ export default function AppLayout() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 z-40 h-full pb-10 overflow-x-hidden overflow-y-auto border-r w-60 transition-all bg-neutral-800/30 border-neutral-800 ${
+        className={`fixed top-0 left-0 z-40 h-full pb-10 overflow-x-hidden overflow-y-auto border-r w-60 bg-neutral-800/30 border-neutral-800 ${
           sidebarOpen ? "w-60" : "w-0"
         }`}
       >
         <div className="h-full px-4 py-1">
           <UserCard
+            supabase={supabase}
             pic={session.user.user_metadata.avatar_url}
             name={session.user.user_metadata.user_name}
           >
@@ -65,17 +72,18 @@ export default function AppLayout() {
               supabase={supabase}
               session={session}
               btnClass="mb-2 w-full shadow-none bg-neutral-700/20"
+              btnIcon={<BiPlus size={19} />}
             />
           </UserCard>
-          <SidebarSection title="Documents" icon={<BiCloud size={19} />}>
-            <RealtimeDocs serverDocs={docs} />
+          <SidebarSection title="Documents" icon={<BiFolder size={19} />}>
+            <RealtimeDocs documents={docs} />
           </SidebarSection>
           <SidebarSection title="Saved" icon={<BiLibrary size={19} />}>
             <p>my docs</p>
           </SidebarSection>
         </div>
         <div className="absolute bottom-0 left-0 w-full px-5 py-4 font-medium text-gray-500">
-          <h1>docskit v0.1.0</h1>
+          <h1>🚧 docskit v0.1.0 alpha</h1>
         </div>
       </nav>
       <div
