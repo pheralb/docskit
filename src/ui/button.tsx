@@ -12,7 +12,7 @@ const Button = (props: ButtonProps) => {
   return (
     <button
       type={props.type}
-      className={`px-4 py-2 text-sm font-medium text-white transition-all duration-200 border border-transparent rounded-md shadow-sm outline-none bg-neutral-900 hover:bg-neutral-800 border-neutral-800 focus:ring-0 ${
+      className={`px-4 py-2 text-sm font-medium text-white transition-all duration-200 rounded-md shadow-sm bg-neutral-900 hover:bg-neutral-800 focus:ring-0 ${
         props.className ? props.className : ""
       }`}
       onClick={props.onClick}
