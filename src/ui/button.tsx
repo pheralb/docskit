@@ -1,7 +1,9 @@
 import React from "react";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
+  icon?: React.ReactNode;
 }
 
 const Button = (props: ButtonProps) => {
