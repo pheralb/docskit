@@ -9,7 +9,10 @@ module.exports = {
       },
       colors: {
         midnight: "#191919",
-      }
+      },
+      fontSize: {
+        mini: "15px",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
