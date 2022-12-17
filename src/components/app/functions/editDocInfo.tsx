@@ -6,27 +6,32 @@ import Button from "@/ui/button";
 import Modal from "@/ui/modal";
 import { BiCheck } from "react-icons/bi";
 import { MaybeSession, TypedSupabaseClient } from "@/types/supabase";
-import { nanoid } from "nanoid";
 import { toastStyle } from "@/styles/toast";
 import { useNavigate } from "@remix-run/react";
 
 type InputTypes = {
   title: string;
+  description: string;
 };
 
-interface CreateDocProps {
+interface EditDocProps {
   supabase: TypedSupabaseClient;
   session: MaybeSession;
+  title?: string;
+  description?: string;
+  slug?: string;
   btnClass?: string;
   btnIcon?: React.ReactNode;
 }
 
-const CreateDoc = ({
-  session,
+const EditDocInfo = ({
+  title,
+  description,
+  slug,
   supabase,
   btnClass,
   btnIcon,
-}: CreateDocProps) => {
+}: EditDocProps) => {
   const [open, setOpen] = useState(false);
   const {
     register,
@@ -40,25 +45,19 @@ const CreateDoc = ({
   };
 
   const onSubmit: SubmitHandler<InputTypes> = async (data) => {
-    const slug = nanoid(8);
     try {
       const { error } = await supabase
         .from("docs")
-        .insert([
-          {
-            user_id: session?.user.id,
-            title: data.title,
-            slug,
-          },
-        ])
-        .single();
+        .update({ title: data.title, description: data.description })
+        .eq("slug", slug);
 
-      if (error) toast(`🚧 ${error.message}`, toastStyle);
-
-      toast("✨ New document created", toastStyle);
-      navigate(`/app/${slug}`);
+      if (error) {
+        toast(`Error: ${error.message}`, toastStyle);
+      }
+      toast(`Saved 🎉`, toastStyle);
+      navigate(".", { replace: true });
     } catch (error) {
-      toast(`🚧 ${error}`, toastStyle);
+      console.log(error);
     } finally {
       setOpen(false);
     }
@@ -67,15 +66,24 @@ const CreateDoc = ({
   return (
     <>
       <Button onClick={() => setOpen(true)} className={btnClass} icon={btnIcon}>
-        New document
+        Edit info
       </Button>
-      <Modal open={open} close={handleCreateModal} title="Create new document">
+      <Modal open={open} close={handleCreateModal} title="Edit information">
         <form onSubmit={handleSubmit(onSubmit)}>
+          <label>Title:</label>
           <input
-            className="w-full px-3 py-2 font-medium transition-all duration-200 border rounded-md shadow-sm outline-none bg-neutral-900 hover:bg-neutral-900 border-neutral-800 focus:ring-0"
+            className="w-full px-3 py-2 mb-4 font-medium transition-all duration-200 border rounded-md shadow-sm outline-none bg-neutral-900 hover:bg-neutral-900 border-neutral-800 focus:ring-0"
             type="text"
+            defaultValue={title}
             placeholder="Enter document title"
             {...register("title", { required: true })}
+          />
+          <label>Description:</label>
+          <textarea
+            className="w-full px-3 py-2 font-medium transition-all duration-200 border rounded-md shadow-sm outline-none bg-neutral-900 hover:bg-neutral-900 border-neutral-800 focus:ring-0"
+            defaultValue={description}
+            placeholder="Enter document title"
+            {...register("description", { required: true })}
           />
           {errors.title && <span>This field is required</span>}
           <div className="flex justify-end">
@@ -84,7 +92,7 @@ const CreateDoc = ({
               className="mt-2 bg-neutral-700"
               icon={<BiCheck size={19} />}
             >
-              Create
+              Save
             </Button>
           </div>
         </form>
@@ -93,4 +101,4 @@ const CreateDoc = ({
   );
 };
 
-export default CreateDoc;
+export default EditDocInfo;
