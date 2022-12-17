@@ -7,6 +7,7 @@ import { createServerClient } from "@/utils/supabase.server";
 
 import type { Database } from "@/types/db";
 import type { LoaderArgs } from "@remix-run/node";
+import { supabaseEnv } from "@/utils/supabase.env";
 
 // this uses Pathless Layout Routes [1] to wrap up all our Supabase logic
 
@@ -16,10 +17,7 @@ export const loader = async ({ request }: LoaderArgs) => {
   // environment variables may be stored somewhere other than
   // `process.env` in runtimes other than node
   // we need to pipe these Supabase environment variables to the browser
-  const env = {
-    SUPABASE_URL: process.env.SUPABASE_URL!,
-    SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY!,
-  };
+  const env = supabaseEnv;
 
   // We can retrieve the session on the server and hand it to the client.
   // This is used to make sure the session is available immediately upon rendering
@@ -61,8 +59,6 @@ export default function Supabase() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.access_token !== serverAccessToken) {
-        // server and client are out of sync.
-        // Remix recalls active loaders after actions complete
         fetcher.submit(null, {
           method: "post",
           action: "/handle-supabase-auth",
