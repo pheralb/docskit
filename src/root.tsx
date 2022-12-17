@@ -4,15 +4,17 @@ import {
   Meta,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
   useLocation,
   useOutlet,
   useTransition,
 } from "@remix-run/react";
-import type { MetaFunction, LinksFunction } from "@remix-run/node";
+import { MetaFunction, LinksFunction } from "@remix-run/node";
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import NProgress from "nprogress";
 
+// Styles =>
 import styles from "./styles/tailwind.css";
 import fonts from "./styles/fonts.css";
 import nProgressStyles from "nprogress/nprogress.css";
@@ -51,15 +53,12 @@ export default function App() {
   const outlet = useOutlet();
   const location = useLocation();
   const transition = useTransition();
+  const data = useLoaderData();
 
   useEffect(() => {
-    // when the state is idle then we can to complete the progress bar
     if (transition.state === "idle") NProgress.done();
-    // and when it's something else it means it's either submitting a form or
-    // waiting for the loaders of the next location so we start it
     else NProgress.start();
   }, [transition.state]);
-
 
   return (
     <html lang="en">
@@ -69,9 +68,7 @@ export default function App() {
       </head>
       <body className="text-white bg-midnight text-mini">
         <AnimatePresence mode="wait">
-          <motion.main key={location.pathname}>
-            {outlet}
-          </motion.main>
+          <motion.main key={location.pathname}>{outlet}</motion.main>
         </AnimatePresence>
         <ScrollRestoration />
         <Scripts />
