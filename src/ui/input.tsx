@@ -9,7 +9,9 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const Input = (props: InputProps) => {
   return (
     <input
-      className={`w-64 px-2 py-1 font-medium transition-all duration-200 rounded-md shadow-sm outline-none bg-neutral-900 hover:bg-neutral-900 border-neutral-700 focus:ring-0 ${props.className}`}
+      className={`w-full px-3 py-2 font-medium transition-all duration-200 rounded-md shadow-sm outline-none bg-neutral-900 hover:bg-neutral-900 border border-neutral-800 focus:ring-0 ${
+        props.className ? props.className : ""
+      }`}
       value={props.value}
       onChange={props.onChange}
       {...props}

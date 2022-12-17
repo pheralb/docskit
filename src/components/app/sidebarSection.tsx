@@ -9,11 +9,11 @@ interface SidebarSectionProps {
 const SidebarSection = (props: SidebarSectionProps) => {
   return (
     <>
-      <div className="flex items-center pt-4 space-x-2 border-t border-neutral-800">
+      <div className="flex items-center pt-4 pb-2 space-x-2 border-b border-neutral-800">
         {props.icon}
         <p>{props.title}</p>
       </div>
-      <div className="mt-2 mb-4">{props.children}</div>
+      <div className="mt-3 mb-4">{props.children}</div>
     </>
   );
 };
