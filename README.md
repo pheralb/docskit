@@ -1,8 +1,8 @@
 <div align="center">
 
-<!-- <a href="docskit.vercel.app">
+<a href="docskit.vercel.app">
 <img src="./public/img/banner_gh.jpg" />
-</a> -->
+</a>
 
 <p></p>
 
@@ -35,6 +35,14 @@
 
 - Pablo Hdez - [Twitter](https://twitter.com/pheralb_).
 
+## 📸 Screenshot
+
+<div align="center">
+
+<img src="./public/img/screenshot.png" />
+
+</div>
+
 ## 📦 Packages
 
 - **[Remix + Typescript](https://remix.run/)** - Build better websites.
@@ -42,6 +50,7 @@
 - **[Headless UI](https://headlessui.com/)** - Unstyled, fully accessible UI components.
 - **[Supabase v2](https://supabase.com/docs/reference/javascript/introduction)** - Supabase Javascript client library.
 - **[Supabase Remix Auth Helper](https://supabase.com/docs/guides/auth/auth-helpers/remix)** - user authentication in Remix applications.
+- **[Superkey](https://superkey.vercel.app/)** - A stylized command menu for React.
 - **[Monaco Editor for React](https://github.com/suren-atoyan/monaco-react)** - use the monaco-editor in any React application.
 - **[React-Markdown](https://github.com/remarkjs/react-markdown)** - Markdown component for React.
 - **[React-Hook-Form](https://react-hook-form.com/)** - performant, flexible and extensible forms with easy-to-use validation.
