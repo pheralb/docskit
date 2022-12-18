@@ -16,6 +16,7 @@ import { BiArrowFromBottom, BiEdit, BiSave } from "react-icons/bi";
 import { toast } from "react-hot-toast";
 import { toastStyle } from "@/styles/toast";
 import EditDocInfo from "@/components/app/functions/editDocInfo";
+import ShareDoc from "@/components/app/functions/shareDoc";
 
 export const loader = async ({ request, params }: LoaderArgs) => {
   const response = new Response();
@@ -62,7 +63,6 @@ const DocumentSlug = () => {
   const { session, env, doc } = useLoaderData<typeof loader>();
   const [value, setValue] = useState(doc?.doc ?? "");
   const [title, setTitle] = useState(doc?.title ?? "");
-  const [slug, setSlug] = useState(doc?.slug ?? "");
   const [description, setDescription] = useState(doc?.description ?? "");
   const [supabase] = useState(() =>
     createBrowserClient<Database>(env.SUPABASE_URL, env.SUPABASE_ANON_KEY)
@@ -106,12 +106,12 @@ const DocumentSlug = () => {
             btnIcon={<BiEdit size={18} />}
             btnClass="border border-neutral-800"
           />
-          <Button
-            className="border border-neutral-800"
-            icon={<BiArrowFromBottom size={18} />}
-          >
-            Share
-          </Button>
+          <ShareDoc
+            supabase={supabase}
+            session={session}
+            slug={doc?.slug}
+            public={doc?.public}
+          />
           <Button
             className="border border-neutral-800"
             icon={<BiSave size={18} />}
