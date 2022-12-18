@@ -33,7 +33,7 @@ export const loader = async ({ request, params }: LoaderArgs) => {
     });
   }
 
-  if (data.public === false && !session) {
+  if (data.public === false) {
     return redirect("/app", {
       headers: response.headers,
     });
