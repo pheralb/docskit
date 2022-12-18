@@ -8,6 +8,7 @@ import { BiCheck } from "react-icons/bi";
 import { MaybeSession, TypedSupabaseClient } from "@/types/supabase";
 import { toastStyle } from "@/styles/toast";
 import { useNavigate } from "@remix-run/react";
+import Alert from "../alert";
 
 type InputTypes = {
   title: string;
@@ -82,14 +83,14 @@ const EditDocInfo = ({
           <textarea
             className="w-full px-3 py-2 font-medium transition-all duration-200 border rounded-md shadow-sm outline-none bg-neutral-900 hover:bg-neutral-900 border-neutral-800 focus:ring-0"
             defaultValue={description}
-            placeholder="Enter document title"
+            placeholder="Enter document description"
             {...register("description", { required: true })}
           />
-          {errors.title && <span>This field is required</span>}
+          {errors.title && <Alert message="Title is required" />}
           <div className="flex justify-end">
             <Button
               type="submit"
-              className="mt-2 bg-neutral-700"
+              className="mt-2 border border-neutral-800"
               icon={<BiCheck size={19} />}
             >
               Save

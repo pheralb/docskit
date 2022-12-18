@@ -71,6 +71,7 @@ const CreateDoc = ({
       </Button>
       <Modal open={open} close={handleCreateModal} title="Create new document">
         <form onSubmit={handleSubmit(onSubmit)}>
+          <label className="mb-1">Title:</label>
           <input
             className="w-full px-3 py-2 font-medium transition-all duration-200 border rounded-md shadow-sm outline-none bg-neutral-900 hover:bg-neutral-900 border-neutral-800 focus:ring-0"
             type="text"
