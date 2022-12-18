@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Editor from "@monaco-editor/react";
 import type { Monaco } from "@monaco-editor/react";
+import { Ring } from "@uiball/loaders";
 
 interface EditorProps {
   value?: string;
@@ -28,13 +29,13 @@ const EditorComponent = (props: EditorProps) => {
       defaultValue={props.default}
       value={props.value}
       onChange={props.onChange}
+      loading={<Ring size={32} color="white" />}
       options={{
         minimap: {
           enabled: false,
         },
         fontSize: 16,
-        fontFamily:
-          "'Cascadia', 'Menlo', 'Monaco', 'Courier New', 'monospace'",
+        fontFamily: "'Cascadia', 'Menlo', 'Monaco', 'Courier New', 'monospace'",
         fontLigatures: "on",
         wordWrap: "on",
       }}

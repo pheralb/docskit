@@ -14,6 +14,7 @@ const Docs = ({ documents }: { documents: Doc[] }) => {
             "flex items-center py-2 px-2 space-x-2 rounded-md cursor-pointer hover:bg-neutral-800 duration-100 transition-colors" +
             (isActive ? " bg-neutral-800 text-white" : "")
           }
+          reloadDocument
         >
           <HiOutlineDocumentText size={16} />
           <p className="text-sm truncate">{doc.title}</p>

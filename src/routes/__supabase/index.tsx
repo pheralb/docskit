@@ -26,8 +26,8 @@ export default function Index() {
         </div>
         <Down delay={0.4}>
           <div className="flex items-center justify-center mb-2 space-x-6">
-            <FaMarkdown size={60} className="text-neutral-500" />
-            <SiSupabase size={35} className="text-neutral-500" />
+            <FaMarkdown size={60} className="transition-colors duration-150 text-neutral-500 hover:text-yellow-500" />
+            <SiSupabase size={35} className="transition-colors duration-150 text-neutral-500 hover:text-green-500" />
           </div>
           <Link to="/app">
             <div className="flex items-center justify-center w-full px-4 py-3 text-lg font-medium text-white hover:text-gray-200">

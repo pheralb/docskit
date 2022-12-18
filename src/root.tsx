@@ -17,6 +17,7 @@ import styles from "./styles/tailwind.css";
 import fonts from "./styles/fonts.css";
 import prism from "./styles/prism.css";
 import nProgressStyles from "nprogress/nprogress.css";
+import superkeyStyles from "superkey/styles.css";
 
 // Links =>
 export const links: LinksFunction = () => {
@@ -24,6 +25,7 @@ export const links: LinksFunction = () => {
     // Styles:
     { rel: "stylesheet", href: styles },
     { rel: "stylesheet", href: fonts },
+    { rel: "stylesheet", href: superkeyStyles },
     { rel: "stylesheet", href: nProgressStyles },
     { rel: "stylesheet", href: prism },
     // Fonts:
@@ -85,7 +87,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="text-white bg-midnight text-mini">
+      <body className="font-sans text-white bg-midnight text-mini">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
