@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 
 import Button from "@/ui/button";
 import Modal from "@/ui/modal";
-import { BiCheck } from "react-icons/bi";
+import { BiCheck, BiTrash } from "react-icons/bi";
 import { MaybeSession, TypedSupabaseClient } from "@/types/supabase";
 import { toastStyle } from "@/styles/toast";
 import { useNavigate } from "@remix-run/react";
@@ -64,39 +64,65 @@ const EditDocInfo = ({
     }
   };
 
+  const deleteDoc = async () => {
+    try {
+      const { error } = await supabase.from("docs").delete().eq("slug", slug);
+      if (error) {
+        toast(`Error: ${error.message}`, toastStyle);
+      }
+      toast(`🚧 Document deleted successfully`, toastStyle);
+      navigate("/app");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setOpen(false);
+    }
+  };
+
   return (
     <>
       <Button onClick={() => setOpen(true)} className={btnClass} icon={btnIcon}>
         Edit info
       </Button>
       <Modal open={open} close={handleCreateModal} title="Edit information">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <label>Title:</label>
-          <input
-            className="w-full px-3 py-2 mb-4 font-medium transition-all duration-200 border rounded-md shadow-sm outline-none bg-neutral-900 hover:bg-neutral-900 border-neutral-800 focus:ring-0"
-            type="text"
-            defaultValue={title}
-            placeholder="Enter document title"
-            {...register("title", { required: true })}
-          />
-          <label>Description:</label>
-          <textarea
-            className="w-full px-3 py-2 font-medium transition-all duration-200 border rounded-md shadow-sm outline-none bg-neutral-900 hover:bg-neutral-900 border-neutral-800 focus:ring-0"
-            defaultValue={description}
-            placeholder="Enter document description"
-            {...register("description")}
-          />
-          {errors.title && <Alert message="Title is required" />}
-          <div className="flex justify-end">
-            <Button
-              type="submit"
-              className="mt-2 border border-neutral-800"
-              icon={<BiCheck size={19} />}
-            >
-              Save
-            </Button>
-          </div>
-        </form>
+        <h3 className="mb-1">Information:</h3>
+        <div className="p-3 mb-3 border rounded-md border-neutral-800">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <label>Title:</label>
+            <input
+              className="w-full px-3 py-2 mb-4 font-medium transition-all duration-200 border rounded-md shadow-sm outline-none bg-neutral-900 hover:bg-neutral-900 border-neutral-800 focus:ring-0"
+              type="text"
+              defaultValue={title}
+              placeholder="Enter document title"
+              {...register("title", { required: true })}
+            />
+            <label>Description:</label>
+            <textarea
+              className="w-full px-3 py-2 font-medium transition-all duration-200 border rounded-md shadow-sm outline-none bg-neutral-900 hover:bg-neutral-900 border-neutral-800 focus:ring-0"
+              defaultValue={description}
+              placeholder="Enter document description"
+              {...register("description")}
+            />
+            {errors.title && <Alert message="Title is required" />}
+            <div className="flex justify-end space-x-2">
+              <Button
+                type="submit"
+                className="mt-2 border border-neutral-800"
+                icon={<BiCheck size={19} />}
+              >
+                Save
+              </Button>
+            </div>
+          </form>
+        </div>
+        <h3>Danger:</h3>
+        <Button
+          className="w-full mt-2 text-red-400"
+          icon={<BiTrash size={19} />}
+          onClick={deleteDoc}
+        >
+          Delete document
+        </Button>
       </Modal>
     </>
   );
