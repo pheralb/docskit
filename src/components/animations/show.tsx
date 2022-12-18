@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 
 interface MotionProps {
   children: React.ReactNode;
+  delay?: number;
 }
 
 const Show = (props: MotionProps) => {
@@ -16,6 +17,10 @@ const Show = (props: MotionProps) => {
         animate: {
           opacity: 1,
         },
+      }}
+      transition={{
+        duration: 0.4,
+        delay: props.delay,
       }}
     >
       {props.children}
