@@ -10,15 +10,9 @@ import { Database } from "@/types/db";
 
 import IconButton from "@/ui/iconButton";
 
-import {
-  BiDockLeft,
-  BiFolder,
-  BiLibrary,
-  BiPlus,
-  BiSearch,
-} from "react-icons/bi";
+import { BiDockLeft, BiFolder, BiPlus } from "react-icons/bi";
 
-import RealtimeDocs from "@/components/app/docs";
+import Docs from "@/components/app/docs";
 import SidebarSection from "@/components/app/sidebarSection";
 import UserCard from "@/components/app/userCard";
 import CreateDoc from "@/components/app/functions/createDoc";
@@ -77,7 +71,7 @@ export default function AppLayout() {
             />
           </UserCard>
           <SidebarSection title="Documents" icon={<BiFolder size={19} />}>
-            <RealtimeDocs documents={docs} />
+            <Docs documents={docs} />
           </SidebarSection>
         </div>
         <div className="absolute bottom-0 left-0 w-full px-5 py-4 font-medium text-gray-500">

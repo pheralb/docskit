@@ -6,7 +6,6 @@ import { SiSupabase } from "react-icons/si";
 import { Link } from "@remix-run/react";
 import Up from "@/components/animations/up";
 import Down from "@/components/animations/down";
-import { RoughNotation } from "react-rough-notation";
 
 export default function Index() {
   return (
@@ -15,12 +14,9 @@ export default function Index() {
       <div className="max-w-screen-xl px-10 mx-auto xl:px-16">
         <div className="mx-auto mt-24 md:px-24">
           <Up>
-            <div className="flex items-center justify-center text-4xl font-medium text-center">
-              <h2 className="mr-2">Create and share documentation</h2>
-              <RoughNotation type="underline" show={true}>
-                <h2>effortlessly</h2>
-              </RoughNotation>
-            </div>
+            <h2 className="text-4xl font-medium text-center">
+              Create and share documentation effortlessly
+            </h2>
           </Up>
           <Down delay={0.2}>
             <p className="mt-4 mb-2 text-xl text-center">

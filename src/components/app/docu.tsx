@@ -9,9 +9,9 @@ interface DocuProps {
 
 const Docu = (props: DocuProps) => {
   return (
-    <div className="p-3 border rounded-md bg-neutral-800/40 border-neutral-700">
+    <div className="p-3 border rounded-md bg-neutral-800/40 border-neutral-800">
       <Link to={`/app/${props.slug}`}>
-        <h1 className="mb-1 text-xl font-bold text-gray-300 truncate transition-all duration-150 hover:text-white">
+        <h1 className="mb-1 text-xl font-medium text-gray-300 truncate transition-all duration-150 hover:text-white">
           {props.title}
         </h1>
       </Link>

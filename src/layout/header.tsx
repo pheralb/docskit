@@ -1,17 +1,23 @@
 import Logo from "@/components/icons/logo";
-import Button from "@/ui/button";
+
 import { Link } from "@remix-run/react";
 import { BiLinkExternal } from "react-icons/bi";
 import { IoLogoGithub, IoLogoTwitter } from "react-icons/io5";
 
-const Header = () => {
+interface HeaderProps {
+  title?: string;
+}
+
+const Header = (props : HeaderProps) => {
   return (
-    <div className="sticky top-0 z-50 w-full py-5 pl-4 pr-6 bg-midnight">
+    <div className="sticky top-0 z-50 w-full py-4 pl-4 pr-6 bg-midnight">
       <div className="flex items-center justify-between">
         <Link to="/">
           <div className="flex items-center space-x-3 text-gray-300 transition-colors duration-150 cursor-pointer hover:text-white">
             <Logo className="w-8 border rounded-full border-neutral-800" />
-            <p className="font-medium">docskit</p>
+            <p className="font-medium truncate">
+              {props.title || "docskit"}
+            </p>
           </div>
         </Link>
         <div className="flex items-center">
@@ -31,7 +37,7 @@ const Header = () => {
               <IoLogoGithub size={22} />
             </a>
             <a
-              href="https://github.com/pheralb/docskit"
+              href="https://twitter.com/pheralb_"
               target="_blank"
               rel="noopener noreferrer"
             >
