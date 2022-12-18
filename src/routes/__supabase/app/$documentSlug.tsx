@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { json, MetaFunction } from "@remix-run/node";
+import { json, MetaFunction, redirect } from "@remix-run/node";
 import type { LoaderArgs } from "@remix-run/node";
 import { createServerClient } from "@/utils/supabase.server";
 import { useLoaderData } from "@remix-run/react";
@@ -31,6 +31,12 @@ export const loader = async ({ request, params }: LoaderArgs) => {
     .select("*")
     .eq("slug", `${params.documentSlug}`)
     .single();
+
+  if (!data) {
+    return redirect("/404", {
+      headers: response.headers,
+    });
+  }
 
   return json(
     { env, doc: data, param: params.slug, session },
@@ -86,7 +92,8 @@ const DocumentSlug = () => {
             {doc?.title}
           </h1>
           <p className="text-gray-400 text-md">
-            {doc?.description ?? "😊 Press settings button to add description."}
+            {doc?.description ??
+              "😊 Press 'Edit info' button to add description."}
           </p>
         </div>
         <div className="flex items-center space-x-2">
