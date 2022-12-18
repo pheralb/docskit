@@ -84,7 +84,7 @@ const EditDocInfo = ({
             className="w-full px-3 py-2 font-medium transition-all duration-200 border rounded-md shadow-sm outline-none bg-neutral-900 hover:bg-neutral-900 border-neutral-800 focus:ring-0"
             defaultValue={description}
             placeholder="Enter document description"
-            {...register("description", { required: true })}
+            {...register("description")}
           />
           {errors.title && <Alert message="Title is required" />}
           <div className="flex justify-end">

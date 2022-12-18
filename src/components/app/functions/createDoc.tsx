@@ -56,7 +56,7 @@ const CreateDoc = ({
       if (error) toast(`🚧 ${error.message}`, toastStyle);
 
       toast("✨ New document created", toastStyle);
-      navigate(`/app/${slug}`);
+      navigate(`.`, { replace: true });
     } catch (error) {
       toast(`🚧 ${error}`, toastStyle);
     } finally {
