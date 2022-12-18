@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useCatch,
   useTransition,
 } from "@remix-run/react";
 import { MetaFunction, LinksFunction } from "@remix-run/node";
@@ -18,6 +19,9 @@ import fonts from "./styles/fonts.css";
 import prism from "./styles/prism.css";
 import nProgressStyles from "nprogress/nprogress.css";
 import superkeyStyles from "superkey/styles.css";
+import Header from "./layout/header";
+import Footer from "./layout/footer";
+import { IoAlertCircleOutline } from "react-icons/io5";
 
 // Links =>
 export const links: LinksFunction = () => {
@@ -93,6 +97,29 @@ export default function App() {
         <Scripts />
         <LiveReload />
         <Toaster position="bottom-right" reverseOrder={false} />
+      </body>
+    </html>
+  );
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+  return (
+    <html>
+      <head>
+        <title>Oops - Docskit</title>
+        <Meta />
+        <Links />
+      </head>
+      <body className="font-sans text-white bg-midnight text-mini">
+        <Header />
+        <div className="flex flex-col items-center justify-center">
+          <IoAlertCircleOutline className="mb-3" size={80} />
+          <h1 className="mb-2 text-4xl font-medium">{caught.status}</h1>
+          <p className="text-center">{caught.statusText}</p>
+        </div>
+        <Footer />
+        <Scripts />
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { json, LoaderArgs, redirect } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useNavigate } from "@remix-run/react";
 
 import { Database } from "@/types/db";
 import { supabaseEnv } from "@/utils/supabase.env";
@@ -42,15 +42,21 @@ const Auth = () => {
     createBrowserClient<Database>(env.SUPABASE_URL, env.SUPABASE_ANON_KEY)
   );
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     setLoading(true);
-    await supabase.auth.signInWithOAuth({
-      provider: "github",
-      options: {
-        redirectTo: "/app",
-      },
-    });
+    try {
+      await supabase.auth.signInWithOAuth({
+        provider: "github",
+        options: {
+          redirectTo: "/app",
+        },
+      });
+      navigate("/app");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
