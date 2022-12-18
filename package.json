@@ -33,7 +33,8 @@
     "react-markdown": "8.0.4",
     "react-rough-notation": "1.0.3",
     "rehype-prism-plus": "1.5.0",
-    "remark-gfm": "3.0.1"
+    "remark-gfm": "3.0.1",
+    "superkey": "^0.1.3"
   },
   "devDependencies": {
     "@remix-run/dev": "1.8.2",

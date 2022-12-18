@@ -32,5 +32,6 @@ module.exports = {
     /^ccount*/,
     /^trim-lines*/,
     /^markdown-table*/,
+    "superkey",
   ],
 };
