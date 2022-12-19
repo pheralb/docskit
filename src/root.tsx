@@ -17,8 +17,10 @@ import { Toaster } from "react-hot-toast";
 import styles from "./styles/tailwind.css";
 import fonts from "./styles/fonts.css";
 import prism from "./styles/prism.css";
-import nProgressStyles from "nprogress/nprogress.css";
+import nProgressStyles from "./styles/nprogress.css";
 import superkeyStyles from "superkey/styles.css";
+
+// Layout for CatchBoundary =>
 import Header from "./layout/header";
 import Footer from "./layout/footer";
 import { IoAlertCircleOutline } from "react-icons/io5";
@@ -83,6 +85,7 @@ export default function App() {
   useEffect(() => {
     if (transition.state === "idle") NProgress.done();
     else NProgress.start();
+    NProgress.configure({ showSpinner: false });
   }, [transition.state]);
 
   return (
@@ -96,7 +99,7 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
-        <Toaster position="bottom-right" reverseOrder={false} />
+        <Toaster position="top-center" reverseOrder={false} />
       </body>
     </html>
   );
