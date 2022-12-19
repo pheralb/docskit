@@ -32,6 +32,8 @@ module.exports = {
     /^ccount*/,
     /^trim-lines*/,
     /^markdown-table*/,
+    /^web-namespaces*/,
+    /^zwitch*/,
     "superkey",
   ],
 };
