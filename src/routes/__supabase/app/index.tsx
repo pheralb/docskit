@@ -19,7 +19,11 @@ export const loader = async ({ request }: LoaderArgs) => {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const { data } = await supabase.from("docs").select("*");
+  const { data } = await supabase
+    .from("docs")
+    .select("*")
+    .eq("user_id", session?.user?.id);
+    
 
   return json(
     { env, data, session },
