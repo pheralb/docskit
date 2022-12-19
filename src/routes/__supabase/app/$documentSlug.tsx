@@ -40,6 +40,12 @@ export const loader = async ({ request, params }: LoaderArgs) => {
     });
   }
 
+  if (data.author !== session?.user.user_metadata.user_name) {
+    return redirect("/app", {
+      headers: response.headers,
+    });
+  }
+
   return json(
     { env, doc: data, param: params.slug, session },
     {
