@@ -1,5 +1,5 @@
 import ReactMarkdown from "react-markdown";
-import rehypePrism from "rehype-prism-plus";
+import rehypePrism from "rehype-prism";
 
 // Plugins =>
 import remarkGfm from "remark-gfm";
