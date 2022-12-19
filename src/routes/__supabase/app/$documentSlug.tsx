@@ -94,15 +94,13 @@ const DocumentSlug = () => {
   return (
     <div className="px-6 py-4">
       <div className="flex flex-col items-center justify-between w-full md:flex-row">
-        <div>
-          <h1 className="mb-2 text-2xl font-bold text-gray-300 md:text-4xl">
-            {doc?.title}
-          </h1>
-          <p className="text-gray-400 text-md">
-            {doc?.description ??
-              "😊 Press 'Edit info' button to add description."}
-          </p>
-        </div>
+        <h1 className="mb-2 text-2xl font-bold text-gray-300 md:text-4xl">
+          {doc?.title}
+        </h1>
+        <p className="text-gray-400 text-md">
+          {doc?.description ??
+            "😊 Press 'Edit info' button to add description."}
+        </p>
         <div className="flex items-center mt-2 space-x-2">
           <EditDocInfo
             supabase={supabase}

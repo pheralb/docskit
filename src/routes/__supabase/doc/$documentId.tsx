@@ -72,6 +72,9 @@ const DocumentSlug = () => {
           <p className="text-gray-400 text-md">
             {doc?.description ?? "No description provided."}
           </p>
+          <div className="flex justify-end w-full mt-2">
+            <p className="text-gray-400">by {doc?.author}</p>
+          </div>
         </div>
         <div className="w-full mt-6 mb-6">
           <Viewer>{value}</Viewer>
