@@ -17,6 +17,7 @@ import { toast } from "react-hot-toast";
 import { toastStyle } from "@/styles/toast";
 import EditDocInfo from "@/components/app/functions/editDocInfo";
 import ShareDoc from "@/components/app/functions/shareDoc";
+import { BsGear } from "react-icons/bs";
 
 export const loader = async ({ request, params }: LoaderArgs) => {
   const response = new Response();
@@ -86,9 +87,9 @@ const DocumentSlug = () => {
 
   return (
     <div className="px-6 py-4">
-      <div className="flex items-center justify-between w-full">
+      <div className="flex flex-col items-center justify-between w-full md:flex-row">
         <div>
-          <h1 className="mb-2 text-4xl font-bold text-gray-300">
+          <h1 className="mb-2 text-2xl font-bold text-gray-300 md:text-4xl">
             {doc?.title}
           </h1>
           <p className="text-gray-400 text-md">
@@ -96,14 +97,14 @@ const DocumentSlug = () => {
               "😊 Press 'Edit info' button to add description."}
           </p>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center mt-2 space-x-2">
           <EditDocInfo
             supabase={supabase}
             session={session}
             title={title}
             description={description}
             slug={doc?.slug}
-            btnIcon={<BiEdit size={18} />}
+            btnIcon={<BsGear size={18} />}
             btnClass="border border-neutral-800"
           />
           <ShareDoc
@@ -121,7 +122,7 @@ const DocumentSlug = () => {
           </Button>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-6 mt-5">
+      <div className="grid grid-cols-1 gap-6 mt-5 md:grid-cols-2">
         <EditorComponent
           default={value}
           onChange={(value) => setValue(value ?? "")}

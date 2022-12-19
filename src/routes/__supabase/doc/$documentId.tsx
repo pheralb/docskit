@@ -4,13 +4,10 @@ import type { LoaderArgs } from "@remix-run/node";
 import { createServerClient } from "@/utils/supabase.server";
 import { useLoaderData } from "@remix-run/react";
 import { supabaseEnv } from "@/utils/supabase.env";
-import { Database } from "@/types/db";
-import { createBrowserClient } from "@supabase/auth-helpers-remix";
 
 import Viewer from "@/components/viewer";
-import { toast } from "react-hot-toast";
-import { toastStyle } from "@/styles/toast";
 import Header from "@/layout/header";
+import Up from "@/components/animations/up";
 
 export const loader = async ({ request, params }: LoaderArgs) => {
   const response = new Response();
@@ -67,9 +64,11 @@ const DocumentSlug = () => {
       <Header title={doc.title} />
       <div className="max-w-2xl px-6 mx-auto mt-7 md:max-w-4xl md:px-0 md:mt-8">
         <div className="pb-4 border-b border-neutral-800">
-          <h1 className="mb-2 text-4xl font-bold text-gray-300">
-            {doc?.title}
-          </h1>
+          <Up>
+            <h1 className="mb-2 text-4xl font-bold text-gray-300">
+              {doc?.title}
+            </h1>
+          </Up>
           <p className="text-gray-400 text-md">
             {doc?.description ?? "No description provided."}
           </p>
