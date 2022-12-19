@@ -53,7 +53,6 @@ const Auth = () => {
           redirectTo: "/app",
         },
       });
-      navigate("/app");
     } catch (error) {
       console.error(error);
     }
