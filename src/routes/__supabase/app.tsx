@@ -34,7 +34,10 @@ export const loader = async ({ request }: LoaderArgs) => {
     });
   }
 
-  const { data } = await supabase.from("docs").select();
+  const { data } = await supabase
+    .from("docs")
+    .select("*")
+    .eq("user_id", session.user?.id);
 
   return json(
     { docs: data ?? [], env, session },
