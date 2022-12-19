@@ -20,6 +20,7 @@ export interface Database {
           doc?: string;
           public?: boolean;
           created?: string;
+          author?: string;
         };
         Insert: {
           id?: number;
@@ -30,6 +31,7 @@ export interface Database {
           doc?: string;
           public?: boolean;
           created?: string;
+          author?: string;
         };
         Update: {
           id?: number;
@@ -40,6 +42,7 @@ export interface Database {
           doc?: string;
           public?: boolean;
           created?: string;
+          author?: string;
         };
       };
     };
