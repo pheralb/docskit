@@ -82,9 +82,9 @@ const EditDocInfo = ({
   return (
     <>
       <Button onClick={() => setOpen(true)} className={btnClass} icon={btnIcon}>
-        Edit info
+        Settings
       </Button>
-      <Modal open={open} close={handleCreateModal} title="Edit information">
+      <Modal open={open} close={handleCreateModal} title="Settings">
         <h3 className="mb-1">Information:</h3>
         <div className="p-3 mb-3 border rounded-md border-neutral-800">
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -117,7 +117,7 @@ const EditDocInfo = ({
         </div>
         <h3>Danger:</h3>
         <Button
-          className="w-full mt-2 text-red-400"
+          className="w-full mt-2 text-red-400 border border-neutral-800"
           icon={<BiTrash size={19} />}
           onClick={deleteDoc}
         >

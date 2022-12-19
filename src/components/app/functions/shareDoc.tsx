@@ -3,12 +3,14 @@ import { MaybeSession, TypedSupabaseClient } from "@/types/supabase";
 
 import Button from "@/ui/button";
 import Modal from "@/ui/modal";
-import { BiArrowFromBottom, BiRocket } from "react-icons/bi";
+import Input from "@/ui/input";
+
+import { BiLink, BiRocket } from "react-icons/bi";
 import { GiDialPadlock } from "react-icons/gi";
 import Alert from "../alert";
+
 import { toast } from "react-hot-toast";
 import { toastStyle } from "@/styles/toast";
-import Input from "@/ui/input";
 import { useNavigate } from "@remix-run/react";
 
 interface ShareDocProps {
@@ -55,9 +57,15 @@ const ShareDoc = (props: ShareDocProps) => {
       <Button
         onClick={() => setOpen(true)}
         className="border border-neutral-800"
-        icon={<BiArrowFromBottom size={18} />}
+        icon={
+          props.public ? (
+            <BiLink size={20} />
+          ) : (
+            <BiRocket size={20} />
+          )
+        }
       >
-        Share
+        {props.public ? "Share URL" : "Publish"}
       </Button>
       <Modal open={open} close={handleShareModal} title="Share">
         {props.public ? (
@@ -79,7 +87,7 @@ const ShareDoc = (props: ShareDocProps) => {
           </>
         ) : (
           <>
-            <Alert message="Your document is not public yet. Do not share sensitive or copyrighted content." />
+            <Alert message="Your document is not public. If you publish the document, it can be visible to any user who has the link (you can undo this option later)." />
             <p className="mt-5">Click here to publish the document:</p>
             <Button
               icon={<BiRocket size={20} />}
