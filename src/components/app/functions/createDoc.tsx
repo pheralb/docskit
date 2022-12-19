@@ -48,6 +48,7 @@ const CreateDoc = ({
           {
             user_id: session?.user.id,
             title: data.title,
+            author: session?.user.user_metadata.user_name,
             slug,
           },
         ])
